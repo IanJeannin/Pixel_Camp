@@ -6,5 +6,7 @@ public class Sounds : MonoBehaviour
 {
     [SerializeField]
     private AudioSource audioSource;
+    [SerializeField]
+    private AudioSource ambientDay;
 
 }

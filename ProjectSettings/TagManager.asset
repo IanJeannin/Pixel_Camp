@@ -57,3 +57,6 @@ TagManager:
   - name: Ball
     uniqueID: 902466839
     locked: 0
+  - name: Credits
+    uniqueID: 2917437801
+    locked: 0

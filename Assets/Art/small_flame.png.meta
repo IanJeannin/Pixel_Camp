@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: 759ebd0cb23a5a347b852c3fd8c1e60b
+guid: c55ec6b6c887f28478b966c1bb6aa030
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6133643725177954853
-    second: fishing_bobber_0
+      213: -5426890637462824778
+    second: small_flame_0
   - first:
-      213: -5755263498964124465
-    second: fishing_bobber_1
+      213: 4502139265471238363
+    second: small_flame_1
   - first:
-      213: 7587242052268880910
-    second: fishing_bobber_2
+      213: 963163417668499948
+    second: small_flame_2
   - first:
-      213: -370746781425722363
-    second: fishing_bobber_3
-  - first:
-      213: 724528447640353589
-    second: fishing_bobber_4
-  - first:
-      213: 6048829601084672173
-    second: fishing_bobber_5
-  - first:
-      213: -3173598729834746192
-    second: fishing_bobber_6
+      213: 8221349343966210498
+    second: small_flame_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -116,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fishing_bobber_0
+      name: small_flame_0
       rect:
         serializedVersion: 2
-        x: 68
-        y: 36
-        width: 36
-        height: 24
+        x: 60
+        y: 52
+        width: 116
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b48153dec49b9c34bbab27be849f7450
-      internalID: -6133643725177954853
+      spriteID: 5afa6df389b45fa4db8a2350ec8b8d63
+      internalID: -5426890637462824778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fishing_bobber_1
+      name: small_flame_1
       rect:
         serializedVersion: 2
-        x: 244
-        y: 36
-        width: 20
-        height: 24
+        x: 300
+        y: 52
+        width: 116
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8806daf6da96f244089e9d6f36d203e9
-      internalID: -5755263498964124465
+      spriteID: a9c841f0998a53e49ae69fc325d1caf0
+      internalID: 4502139265471238363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fishing_bobber_2
+      name: small_flame_2
       rect:
         serializedVersion: 2
-        x: 260
-        y: 40
-        width: 20
-        height: 24
+        x: 540
+        y: 52
+        width: 116
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cabf26f3d9fddc84bb0eeb75bfe4f25e
-      internalID: 7587242052268880910
+      spriteID: 4de2291eabc6c5f40bb602a7e9c76425
+      internalID: 963163417668499948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fishing_bobber_3
+      name: small_flame_3
       rect:
         serializedVersion: 2
-        x: 276
-        y: 36
-        width: 20
-        height: 24
+        x: 780
+        y: 52
+        width: 116
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,71 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2911acb1df4ecf4895e7299a14844c2
-      internalID: -370746781425722363
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fishing_bobber_4
-      rect:
-        serializedVersion: 2
-        x: 424
-        y: 36
-        width: 24
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c233a3923e33bf3458885c95720ad6c5
-      internalID: 724528447640353589
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fishing_bobber_5
-      rect:
-        serializedVersion: 2
-        x: 444
-        y: 44
-        width: 20
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ade8b7a924606d4b87ae10110c8b2c1
-      internalID: 6048829601084672173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fishing_bobber_6
-      rect:
-        serializedVersion: 2
-        x: 460
-        y: 36
-        width: 24
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4e98c6727249ba4b875e185b18a0d66
-      internalID: -3173598729834746192
+      spriteID: ccac8567664f3854baae2277cfaf3755
+      internalID: 8221349343966210498
       vertices: []
       indices: 
       edges: []
@@ -265,7 +193,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 17aa994c1b0ab6a41ab022b03dd5369b
+    spriteID: 19960ca35d7c01541b5dfb53dd30d0fa
     internalID: 0
     vertices: []
     indices: 
