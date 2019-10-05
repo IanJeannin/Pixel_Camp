@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Dog : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject ballObject;
+
     private bool nearBall = false;
     private bool isBallRight = true;
     private bool nearHuman = false;
@@ -16,6 +19,14 @@ public class Dog : MonoBehaviour
         Debug.Log(nearBall);
         if(nearBall==false)
         {
+            if (ballObject.transform.position.x < gameObject.transform.position.x)
+            {
+                isBallRight = false;
+            }
+            else
+            {
+                isBallRight = true;
+            }
             MoveDog();
         }
         if(nearHuman==false&&hasBall==true)
@@ -69,14 +80,6 @@ public class Dog : MonoBehaviour
         if (collision.gameObject.tag == "Ball")
         {
             nearBall = false;
-            if(collision.transform.position.x<gameObject.transform.position.x)
-            {
-                isBallRight = false;
-            }
-            else
-            {
-                isBallRight = true;
-            }
             Debug.Log("Player has entered ball range.");
         }
         else if(collision.gameObject.tag == "Player")
