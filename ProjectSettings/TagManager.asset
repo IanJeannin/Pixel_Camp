@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1828735273
+    locked: 0
+  - name: Dock
+    uniqueID: 3632494261
+    locked: 0
+  - name: Interactables
+    uniqueID: 1136000847
+    locked: 0
