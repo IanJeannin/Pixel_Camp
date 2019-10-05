@@ -202,7 +202,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d5b0d6f0cc5958843908d2df2a0bb4fb, type: 3}
-  m_Color: {r: 0.03369271, g: 0.23584908, b: 0, a: 1}
+  m_Color: {r: 0.17030083, g: 0.8396226, b: 0.7923645, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -220,8 +220,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227818631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.343, y: -4.65, z: 0}
-  m_LocalScale: {x: 24.748823, y: 1, z: 1}
+  m_LocalPosition: {x: 0.18, y: -4.58, z: 0}
+  m_LocalScale: {x: 24.897318, y: 1.3219615, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 533297462}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533297457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.39, y: -1.82, z: 0}
+  m_LocalPosition: {x: -7.31, y: 2.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -453,7 +453,7 @@ MonoBehaviour:
   accelerationForce: 15
   maxSpeed: 5
   rb2d: {fileID: 533297461}
---- !u!1 &1310808438
+--- !u!1 &1445780685
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -461,45 +461,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1310808442}
-  - component: {fileID: 1310808441}
-  - component: {fileID: 1310808440}
-  - component: {fileID: 1310808439}
+  - component: {fileID: 1445780689}
+  - component: {fileID: 1445780688}
+  - component: {fileID: 1445780687}
+  - component: {fileID: 1445780686}
   m_Layer: 0
-  m_Name: Stick
+  m_Name: FishingHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &1310808439
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &1445780686
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310808438}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &1310808440
+  m_GameObject: {fileID: 1445780685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217c32cafbf6bf646aaac3be6f484313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1445780687
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310808438}
+  m_GameObject: {fileID: 1445780685}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -519,13 +510,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!212 &1310808441
+--- !u!212 &1445780688
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310808438}
+  m_GameObject: {fileID: 1445780685}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -556,7 +547,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0091589cb42b5f44995918fabd892408, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26aa852261307b944b565259f246b01a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -567,15 +558,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1310808442
+--- !u!4 &1445780689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310808438}
+  m_GameObject: {fileID: 1445780685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4032726, y: -2.4370844, z: 0}
+  m_LocalPosition: {x: -0.089434385, y: -3.170113, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
