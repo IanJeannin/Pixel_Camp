@@ -8,7 +8,11 @@ public class Ball : MonoBehaviour
     private GameObject playerCharacter;
     [SerializeField]
     private Rigidbody2D ballRigidbody;
+    [SerializeField]
+    private GameObject doggo;
+
     private bool isInRange = false;
+    private bool isCaught = false;
     
     void Start()
     {
@@ -21,6 +25,10 @@ public class Ball : MonoBehaviour
         if(Input.GetButtonDown("Interact")&&isInRange==true)
         {
             TossBall();
+        }
+        if(isCaught==true)
+        {
+            gameObject.transform.position = doggo.transform.position;
         }
     }
 
@@ -44,6 +52,12 @@ public class Ball : MonoBehaviour
         {
             isInRange = true;
             Debug.Log("Player has entered ball range.");
+            isCaught = false;
+        }
+        if(collision.gameObject.tag=="Dog")
+        {
+            isCaught = true;
+            Debug.Log("Doggo has ball");
         }
     }
 
@@ -53,6 +67,11 @@ public class Ball : MonoBehaviour
         {
             isInRange = false;
             Debug.Log("Player has left ball range.");
+        }
+        if(collision.gameObject.tag=="Dog")
+        {
+            isCaught = false;
+            Debug.Log("Doggo has dropped ball.");
         }
     }
 }
