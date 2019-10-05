@@ -13,11 +13,6 @@ public class Ball : MonoBehaviour
 
     private bool isInRange = false;
     private bool isCaught = false;
-    
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
