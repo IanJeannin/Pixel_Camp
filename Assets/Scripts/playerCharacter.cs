@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class playerCharacter : MonoBehaviour
 {
+    Animator animator;
+
     [SerializeField]
     private float accelerationForce = 5;
 
@@ -22,7 +24,7 @@ public class playerCharacter : MonoBehaviour
     public Inventory inventory;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,12 +60,20 @@ public class playerCharacter : MonoBehaviour
             }
         }
     }
-
+    
     private void FixedUpdate()
     {
         rb2d.AddForce(Vector2.right * horizontalInput * accelerationForce);
         Vector2 clampedVelocity = rb2d.velocity;
         clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
+        if(rb2d.velocity.x!=0)
+        {
+            animator.SetBool("isWalking 0", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking 0", true);
+        }
     }
 }

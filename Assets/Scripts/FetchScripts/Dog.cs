@@ -73,6 +73,10 @@ public class Dog : MonoBehaviour
             Debug.Log("Dog has entered humans pat range.");
             hasBall = false;
         }
+        else if(collision.gameObject.tag =="Boundary")
+        {
+            hasBall = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
