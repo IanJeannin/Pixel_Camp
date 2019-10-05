@@ -5,7 +5,6 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private int numberOfSticks = 0;
-    private GameObject[] inventory = new GameObject[999];
 
     public void AddItem(GameObject item)
     {

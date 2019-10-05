@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class fishing : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject player;
+
     private float secondsBeforeFishSpawns;
     private bool fishOnLine=false;
     private float numberOfFish=0;
     private bool nearFishingHole=false;
+    private bool isFishing = false;
+    private bool justCaught = false;
 
     private IEnumerator FishTimer()
     {
+        justCaught = false;
         secondsBeforeFishSpawns = Random.Range(8, 12);
         yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
         StartCoroutine(CatchFish());
@@ -23,15 +29,33 @@ public class fishing : MonoBehaviour
         fishOnLine = true;
         Debug.Log("Fish On Line");
         yield return new WaitForSecondsRealtime(2);
-        Debug.Log("Fish Off Line");
-        fishOnLine = false;
+        CheckIfFishOnLine();
+    }
+
+    private void CheckIfFishOnLine()
+    {
+        if (justCaught == true)
+        {
+
+        }
+        else
+        {
+            Debug.Log("Fish Off Line");
+            fishOnLine = false;
+            isFishing = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isFishing==true)
+        {
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
         if (Input.GetButtonDown("Interact") && nearFishingHole == true && fishOnLine == false)
         {
+            isFishing = true;
             StartCoroutine(FishTimer());
             Debug.Log("Out fishin...");
         }
@@ -39,7 +63,9 @@ public class fishing : MonoBehaviour
         {
             numberOfFish++;
             Debug.Log("Fish Caught: " + numberOfFish);
+            justCaught = true;
             fishOnLine = false;
+            isFishing = false;
         }
     }
 
