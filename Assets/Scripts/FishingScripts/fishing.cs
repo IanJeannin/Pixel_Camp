@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class fishing : MonoBehaviour
 {
@@ -11,11 +12,15 @@ public class fishing : MonoBehaviour
     private GameObject fishExclamation;
     [SerializeField]
     private GameObject fishingBobber;
+    [SerializeField]
+    private GameObject fish;
+    [SerializeField]
+    private Text fishCount;
 
     private float secondsBeforeFishSpawns;
-    private bool fishOnLine=false;
-    private float numberOfFish=0;
-    private bool nearFishingHole=false;
+    private bool fishOnLine = false;
+    private float numberOfFish = 0;
+    private bool nearFishingHole = false;
     private bool isFishing = false;
     private bool justCaught = false;
 
@@ -25,17 +30,25 @@ public class fishing : MonoBehaviour
         secondsBeforeFishSpawns = Random.Range(4, 7);
         yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
         StartCoroutine(CatchFish());
-        
+
     }
 
     private IEnumerator CatchFish()
     {
         fishOnLine = true;
         Debug.Log("Fish On Line");
-        
+
         yield return new WaitForSecondsRealtime(2);
         CheckIfFishOnLine();
     }
+
+    private IEnumerator ShowFish()
+    {
+        fish.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        fish.SetActive(false);
+    }
+    
 
     private void CheckIfFishOnLine()
     {
@@ -80,6 +93,8 @@ public class fishing : MonoBehaviour
         if (Input.GetButtonDown("Interact")&&fishOnLine==true)
         {
             numberOfFish++;
+            fishCount.text = "X " + numberOfFish;
+            StartCoroutine(ShowFish());
             Debug.Log("Fish Caught: " + numberOfFish);
             justCaught = true;
             fishOnLine = false;
