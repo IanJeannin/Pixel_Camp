@@ -7,15 +7,16 @@ public class playerCharacter : MonoBehaviour
     Animator animator;
 
     [SerializeField]
-    private float accelerationForce = 5;
+    private float accelerationForce = 20;
 
     [SerializeField]
-    private float maxSpeed = 5;
+    private float maxSpeed = 3;
 
     [SerializeField]
     private Rigidbody2D rb2d;
 
     private float horizontalInput;
+    private bool isFacingRight;
     // Start is called before the first frame update
 
 
@@ -31,6 +32,14 @@ public class playerCharacter : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal"); 
+        if(horizontalInput>0)
+        {
+            isFacingRight = true;
+        }
+        else if(horizontalInput<0)
+        {
+            isFacingRight = false;
+        }
         if (Input.GetButtonDown ("Interact") && currentInterObj)
         {
             if (currentInterObjScript.inventory)
@@ -67,13 +76,25 @@ public class playerCharacter : MonoBehaviour
         Vector2 clampedVelocity = rb2d.velocity;
         clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
-        if(rb2d.velocity.x!=0)
+        Flip();
+        if(Input.GetAxis("Horizontal")!=0)
         {
-            animator.SetBool("isWalking 0", false);
+            animator.SetBool("isWalking 0", true);
+            
         }
         else
         {
-            animator.SetBool("isWalking 0", true);
+            animator.SetBool("isWalking 0", false);
+        }
+    }
+
+    private void Flip()
+    {
+        if(horizontalInput>0&&isFacingRight!=true||horizontalInput<0&&isFacingRight!=false)
+        {
+            Vector2 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
         }
     }
 }

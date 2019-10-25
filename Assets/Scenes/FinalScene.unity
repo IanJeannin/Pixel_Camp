@@ -563,12 +563,12 @@ PrefabInstance:
     - target: {fileID: 1690081239493054186, guid: becf5540f5badc7439696b8336d2fbdb,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: 1136000847
+      value: -662473035
       objectReference: {fileID: 0}
     - target: {fileID: 1690081239493054186, guid: becf5540f5badc7439696b8336d2fbdb,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1690081239493054186, guid: becf5540f5badc7439696b8336d2fbdb,
         type: 3}
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerationForce: 15
-  maxSpeed: 5
+  maxSpeed: 3
   rb2d: {fileID: 533297461}
   currentInterObj: {fileID: 0}
   currentInterObjScript: {fileID: 1470135376978684066, guid: 9b7845edf07dacd48ba85be2cc9e8f58,
@@ -3512,6 +3512,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2904411585824339727, guid: 26aabfc7803fa684ea11eadc5c4db66e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3627,26 +3647,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.32215476
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904411585824339720, guid: 26aabfc7803fa684ea11eadc5c4db66e,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2904411583913183350, guid: 26aabfc7803fa684ea11eadc5c4db66e,
         type: 3}
