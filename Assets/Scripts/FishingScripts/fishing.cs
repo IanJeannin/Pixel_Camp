@@ -22,7 +22,7 @@ public class fishing : MonoBehaviour
     private IEnumerator FishTimer()
     {
         justCaught = false;
-        secondsBeforeFishSpawns = Random.Range(6, 9);
+        secondsBeforeFishSpawns = Random.Range(4, 7);
         yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
         StartCoroutine(CatchFish());
         
