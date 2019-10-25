@@ -6,7 +6,10 @@ public class Dog : MonoBehaviour
 {
     [SerializeField]
     private GameObject ballObject;
+    [SerializeField]
+    private Animator animator;
 
+    private bool isChasing = true;
     private bool nearBall = false;
     private bool isBallRight = true;
     private bool nearHuman = false;
@@ -27,7 +30,8 @@ public class Dog : MonoBehaviour
             {
                 isBallRight = true;
             }
-            MoveDog();
+            if(isChasing==true)
+                 MoveDog();
             
         }
         if(nearHuman==false&&hasBall==true)
@@ -38,7 +42,8 @@ public class Dog : MonoBehaviour
 
     private void MoveDog()
     {
-        if(isBallRight==true)
+        animator.SetBool("isMoving", true);
+        if (isBallRight==true)
         {
             transform.Translate(new Vector2(2, 0) * Time.deltaTime);
             if (isFacingRight != true)
@@ -60,7 +65,8 @@ public class Dog : MonoBehaviour
 
     private void ReturnToHuman()
     {
-        if(isHumanRight==true)
+        animator.SetBool("isMoving", true);
+        if (isHumanRight==true)
         {
             transform.Translate(new Vector2(2, 0) * Time.deltaTime);
             if (isFacingRight != true)
@@ -88,11 +94,13 @@ public class Dog : MonoBehaviour
             Debug.Log("Dog has entered ball range.");
             hasBall = true;
         }
-        else if (collision.gameObject.tag =="Player")
+        else if (collision.gameObject.tag =="Player"&&hasBall==true)
         {
             nearHuman = true;
             Debug.Log("Dog has entered humans pat range.");
+            isChasing = false;
             hasBall = false;
+            animator.SetBool("isMoving", false);
         }
         else if(collision.gameObject.tag =="Boundary")
         {
@@ -126,6 +134,18 @@ public class Dog : MonoBehaviour
         Vector2 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+
+    }
+    
+    public void Chase() //Will get called after briefly after player hits ball. 
+    {
+        StartCoroutine(Fetch());
+    }
+
+    private IEnumerator Fetch()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        isChasing = true;
 
     }
 }
