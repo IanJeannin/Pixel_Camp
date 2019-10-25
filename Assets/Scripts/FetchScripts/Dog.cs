@@ -12,7 +12,7 @@ public class Dog : MonoBehaviour
     private bool nearHuman = false;
     private bool isHumanRight = false;
     private bool hasBall = false;
-
+    private bool isFacingRight = false;
     // Update is called once per frame
     void Update()
     {
@@ -28,6 +28,7 @@ public class Dog : MonoBehaviour
                 isBallRight = true;
             }
             MoveDog();
+            
         }
         if(nearHuman==false&&hasBall==true)
         {
@@ -40,10 +41,20 @@ public class Dog : MonoBehaviour
         if(isBallRight==true)
         {
             transform.Translate(new Vector2(2, 0) * Time.deltaTime);
+            if (isFacingRight != true)
+            {
+                isFacingRight = !isFacingRight; //Corrects isFacingRight
+                Flip();
+            }
         }
         else
         {
             transform.Translate(new Vector2(-2, 0) * Time.deltaTime);
+            if (isFacingRight != false)
+            {
+                isFacingRight = !isFacingRight; //Corrects isFacingRight
+                Flip();
+            }
         }
     }
 
@@ -52,10 +63,20 @@ public class Dog : MonoBehaviour
         if(isHumanRight==true)
         {
             transform.Translate(new Vector2(2, 0) * Time.deltaTime);
+            if (isFacingRight != true)
+            {
+                isFacingRight = !isFacingRight; //Corrects isFacingRight
+                Flip();
+            }
         }
         else
         {
             transform.Translate(new Vector2(-2, 0) * Time.deltaTime);
+            if (isFacingRight != false)
+            {
+                isFacingRight = !isFacingRight; //Corrects isFacingRight
+                Flip();
+            }
         }
     }
 
@@ -98,5 +119,13 @@ public class Dog : MonoBehaviour
                 isHumanRight = true;
             }
         }
+    }
+
+    private void Flip()
+    {
+        Vector2 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+
     }
 }

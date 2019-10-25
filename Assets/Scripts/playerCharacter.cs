@@ -16,7 +16,7 @@ public class playerCharacter : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private float horizontalInput;
-    private bool isFacingRight;
+    private bool isFacingRight = true;
     // Start is called before the first frame update
 
 
@@ -28,28 +28,6 @@ public class playerCharacter : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        horizontalInput = Input.GetAxis("Horizontal"); 
-        if(horizontalInput>0)
-        {
-            isFacingRight = true;
-        }
-        else if(horizontalInput<0)
-        {
-            isFacingRight = false;
-        }
-        if (Input.GetButtonDown ("Interact") && currentInterObj)
-        {
-            if (currentInterObjScript.inventory)
-            {
-                inventory.AddItem(currentInterObj);
-                currentInterObj.SetActive(false);
-            }
-            
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("interObject"))
@@ -72,11 +50,32 @@ public class playerCharacter : MonoBehaviour
     
     private void FixedUpdate()
     {
+
+        horizontalInput = Input.GetAxis("Horizontal");
+        if (horizontalInput > 0&&isFacingRight!=true)
+        {
+            isFacingRight = true;
+            Flip();
+        }
+        else if (horizontalInput < 0&&isFacingRight!=false)
+        {
+            isFacingRight = false;
+            Flip();
+        }
+        if (Input.GetButtonDown("Interact") && currentInterObj)
+        {
+            if (currentInterObjScript.inventory)
+            {
+                inventory.AddItem(currentInterObj);
+                currentInterObj.SetActive(false);
+            }
+
+        }
+        
         rb2d.AddForce(Vector2.right * horizontalInput * accelerationForce);
         Vector2 clampedVelocity = rb2d.velocity;
         clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
-        Flip();
         if(Input.GetAxis("Horizontal")!=0)
         {
             animator.SetBool("isWalking 0", true);
@@ -90,11 +89,9 @@ public class playerCharacter : MonoBehaviour
 
     private void Flip()
     {
-        if(horizontalInput>0&&isFacingRight!=true||horizontalInput<0&&isFacingRight!=false)
-        {
             Vector2 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
-        }
+        
     }
 }
