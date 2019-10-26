@@ -17,12 +17,12 @@ public class playerCharacter : MonoBehaviour
 
     private float horizontalInput;
     private bool isFacingRight = true;
-    // Start is called before the first frame update
-
+    private bool isFishing=false;
 
     public GameObject currentInterObj = null;
     public InteractiveObject currentInterObjScript = null;
     public Inventory inventory;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -50,18 +50,16 @@ public class playerCharacter : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (isFishing != true)
+        {
+            Move();
+        }
+        PickUpStick();
 
-        horizontalInput = Input.GetAxis("Horizontal");
-        if (horizontalInput > 0&&isFacingRight!=true)
-        {
-            isFacingRight = true;
-            Flip();
-        }
-        else if (horizontalInput < 0&&isFacingRight!=false)
-        {
-            isFacingRight = false;
-            Flip();
-        }
+    }
+
+    private void PickUpStick()
+    {
         if (Input.GetButtonDown("Interact") && currentInterObj)
         {
             if (currentInterObjScript.inventory)
@@ -71,15 +69,30 @@ public class playerCharacter : MonoBehaviour
             }
 
         }
-        
+    }
+
+    private void Move()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        if (horizontalInput > 0 && isFacingRight != true)
+        {
+            isFacingRight = true;
+            Flip();
+        }
+        else if (horizontalInput < 0 && isFacingRight != false)
+        {
+            isFacingRight = false;
+            Flip();
+        }
+
         rb2d.AddForce(Vector2.right * horizontalInput * accelerationForce);
         Vector2 clampedVelocity = rb2d.velocity;
         clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
-        if(Input.GetAxis("Horizontal")!=0)
+        if (Input.GetAxis("Horizontal") != 0)
         {
             animator.SetBool("isWalking 0", true);
-            
+
         }
         else
         {
@@ -92,6 +105,10 @@ public class playerCharacter : MonoBehaviour
             Vector2 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
-        
+    }
+
+    public void CheckFishing()
+    {
+        isFishing = !isFishing;
     }
 }

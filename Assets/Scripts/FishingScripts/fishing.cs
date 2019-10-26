@@ -16,6 +16,8 @@ public class fishing : MonoBehaviour
     private GameObject fish;
     [SerializeField]
     private Text fishCount;
+    [SerializeField]
+    private Animator animator;
 
     private float secondsBeforeFishSpawns;
     private bool fishOnLine = false;
@@ -58,6 +60,7 @@ public class fishing : MonoBehaviour
         }
         else
         {
+            player.GetComponent<playerCharacter>().CheckFishing();
             Debug.Log("Fish Off Line");
             fishOnLine = false;
             isFishing = false;
@@ -71,9 +74,11 @@ public class fishing : MonoBehaviour
         {
             fishingBobber.SetActive(true);
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            animator.SetBool("isFishing", true);
         }
         else
         {
+            animator.SetBool("isFishing", false);
             fishingBobber.SetActive(false);
         }
         if(fishOnLine==true)
@@ -86,12 +91,14 @@ public class fishing : MonoBehaviour
         }
         if (Input.GetButtonDown("Interact") && nearFishingHole == true && fishOnLine == false)
         {
+            player.GetComponent<playerCharacter>().CheckFishing();
             isFishing = true;
             StartCoroutine(FishTimer());
             Debug.Log("Out fishin...");
         }
         if (Input.GetButtonDown("Interact")&&fishOnLine==true)
         {
+            player.GetComponent<playerCharacter>().CheckFishing();
             numberOfFish++;
             fishCount.text = "X " + numberOfFish;
             StartCoroutine(ShowFish());
