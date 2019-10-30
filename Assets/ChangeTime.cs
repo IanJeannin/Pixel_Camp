@@ -10,6 +10,13 @@ public class ChangeTime : MonoBehaviour
     private GameObject night;
     [SerializeField]
     private float timeToSwitchTimes = 40;
+    [SerializeField]
+    private Sounds soundManager;
+
+    //---------------------------------------------------------------------
+    // This Script is found on the TimeChange child object of the MainCamera
+    //---------------------------------------------------------------------
+  
 
     private void Start()
     {
@@ -21,6 +28,7 @@ public class ChangeTime : MonoBehaviour
         day.SetActive(true);
         night.SetActive(false);
         yield return new WaitForSecondsRealtime(timeToSwitchTimes);
+        soundManager.ChangeMusic();
         StartCoroutine(ChangeToNight());
     }
 
@@ -29,6 +37,7 @@ public class ChangeTime : MonoBehaviour
         day.SetActive(false);
         night.SetActive(true);
         yield return new WaitForSecondsRealtime(timeToSwitchTimes);
+        soundManager.ChangeMusic();
         StartCoroutine(ChangeToDay());
     }
 }

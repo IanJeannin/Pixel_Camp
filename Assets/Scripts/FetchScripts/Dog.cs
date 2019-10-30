@@ -8,6 +8,8 @@ public class Dog : MonoBehaviour
     private GameObject ballObject;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private Sounds soundManager;
 
     private bool isChasing = true;
     private bool nearBall = false;
@@ -90,12 +92,14 @@ public class Dog : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ball")
         {
+            soundManager.PlayBark();
             nearBall = true;
             Debug.Log("Dog has entered ball range.");
             hasBall = true;
         }
         else if (collision.gameObject.tag =="Player"&&hasBall==true)
         {
+            soundManager.PlayReturnBall();
             nearHuman = true;
             Debug.Log("Dog has entered humans pat range.");
             isChasing = false;
@@ -146,6 +150,13 @@ public class Dog : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.5f);
         isChasing = true;
+    }
 
+    private IEnumerator Bark()
+    {
+        float randomBarkTime = Random.Range(14, 18);
+        yield return new WaitForSecondsRealtime(randomBarkTime);
+        StartCoroutine(Bark());
+        soundManager.PlayBark();
     }
 }

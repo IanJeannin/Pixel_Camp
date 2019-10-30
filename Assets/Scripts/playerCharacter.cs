@@ -23,6 +23,7 @@ public class playerCharacter : MonoBehaviour
     public InteractiveObject currentInterObjScript = null;
     public Inventory inventory;
 
+
     void Start()
     {
         animator = GetComponent<Animator>();

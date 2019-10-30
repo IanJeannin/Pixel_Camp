@@ -18,6 +18,8 @@ public class fishing : MonoBehaviour
     private Text fishCount;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private Sounds soundManager;
 
     private float secondsBeforeFishSpawns;
     private bool fishOnLine = false;
@@ -26,31 +28,6 @@ public class fishing : MonoBehaviour
     private bool isFishing = false;
     private bool justCaught = false;
 
-    private IEnumerator FishTimer()
-    {
-        justCaught = false;
-        secondsBeforeFishSpawns = Random.Range(4, 7);
-        yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
-        StartCoroutine(CatchFish());
-
-    }
-
-    private IEnumerator CatchFish()
-    {
-        fishOnLine = true;
-        Debug.Log("Fish On Line");
-
-        yield return new WaitForSecondsRealtime(2);
-        CheckIfFishOnLine();
-    }
-
-    private IEnumerator ShowFish()
-    {
-        fish.SetActive(true);
-        yield return new WaitForSecondsRealtime(2);
-        fish.SetActive(false);
-    }
-    
 
     private void CheckIfFishOnLine()
     {
@@ -92,6 +69,7 @@ public class fishing : MonoBehaviour
         if (Input.GetButtonDown("Interact") && nearFishingHole == true && fishOnLine == false)
         {
             player.GetComponent<playerCharacter>().CheckFishing();
+            soundManager.PlayThrowLine();
             isFishing = true;
             StartCoroutine(FishTimer());
             Debug.Log("Out fishin...");
@@ -99,6 +77,7 @@ public class fishing : MonoBehaviour
         if (Input.GetButtonDown("Interact")&&fishOnLine==true)
         {
             player.GetComponent<playerCharacter>().CheckFishing();
+            soundManager.PlayFishCaught();
             numberOfFish++;
             fishCount.text = "X " + numberOfFish;
             StartCoroutine(ShowFish());
@@ -126,4 +105,31 @@ public class fishing : MonoBehaviour
             nearFishingHole = false;
         }
     }
+
+    private IEnumerator FishTimer()
+    {
+        justCaught = false;
+        secondsBeforeFishSpawns = Random.Range(4, 7);
+        yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
+        soundManager.PlayFishOnLine();
+        StartCoroutine(CatchFish());
+
+    }
+
+    private IEnumerator CatchFish()
+    {
+        fishOnLine = true;
+        Debug.Log("Fish On Line");
+
+        yield return new WaitForSecondsRealtime(2);
+        CheckIfFishOnLine();
+    }
+
+    private IEnumerator ShowFish()
+    {
+        fish.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        fish.SetActive(false);
+    }
+
 }

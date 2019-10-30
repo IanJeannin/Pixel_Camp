@@ -10,6 +10,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D ballRigidbody;
     [SerializeField]
     private GameObject doggo;
+    [SerializeField]
+    private Sounds soundManager;
 
     private bool isChasing = true;
     private bool isInRange = false;
@@ -30,6 +32,7 @@ public class Ball : MonoBehaviour
 
     private void TossBall()
     {
+       // soundManager.PlayThrowBall();
         float playerPos = playerCharacter.transform.position.x;
         float ballPos = gameObject.transform.position.x;
         if(playerPos<=ballPos)
