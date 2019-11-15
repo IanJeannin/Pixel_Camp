@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     public int GetInventory()
     {
         int tempSticks = numberOfSticks;
-        numberOfSticks = 0;
+        numberOfSticks = 0; //This method is called when adding sticks to fire, thus remove all sticks
         return tempSticks;
     }
 }

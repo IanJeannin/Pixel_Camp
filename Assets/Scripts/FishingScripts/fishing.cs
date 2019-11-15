@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class fishing : MonoBehaviour
 {
@@ -11,40 +12,32 @@ public class fishing : MonoBehaviour
     private GameObject fishExclamation;
     [SerializeField]
     private GameObject fishingBobber;
+    [SerializeField]
+    private GameObject fish;
+    [SerializeField]
+    private Text fishCount;
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private Sounds soundManager;
 
     private float secondsBeforeFishSpawns;
-    private bool fishOnLine=false;
-    private float numberOfFish=0;
-    private bool nearFishingHole=false;
+    private bool fishOnLine = false;
+    private float numberOfFish = 0;
+    private bool nearFishingHole = false;
     private bool isFishing = false;
     private bool justCaught = false;
 
-    private IEnumerator FishTimer()
-    {
-        justCaught = false;
-        secondsBeforeFishSpawns = Random.Range(6, 9);
-        yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
-        StartCoroutine(CatchFish());
-        
-    }
-
-    private IEnumerator CatchFish()
-    {
-        fishOnLine = true;
-        Debug.Log("Fish On Line");
-        
-        yield return new WaitForSecondsRealtime(2);
-        CheckIfFishOnLine();
-    }
 
     private void CheckIfFishOnLine()
     {
         if (justCaught == true)
         {
-
+            isFishing = false;
         }
         else
         {
+            player.GetComponent<playerCharacter>().CheckFishing();
             Debug.Log("Fish Off Line");
             fishOnLine = false;
             isFishing = false;
@@ -58,9 +51,11 @@ public class fishing : MonoBehaviour
         {
             fishingBobber.SetActive(true);
             player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            animator.SetBool("isFishing", true);
         }
         else
         {
+            animator.SetBool("isFishing", false);
             fishingBobber.SetActive(false);
         }
         if(fishOnLine==true)
@@ -71,19 +66,24 @@ public class fishing : MonoBehaviour
         {
             fishExclamation.SetActive(false);
         }
-        if (Input.GetButtonDown("Interact") && nearFishingHole == true && fishOnLine == false)
+        if (Input.GetButtonDown("Interact") && nearFishingHole == true && isFishing == false && fishOnLine==false)
         {
+            player.GetComponent<playerCharacter>().CheckFishing();
+            soundManager.PlayThrowLine();
             isFishing = true;
             StartCoroutine(FishTimer());
             Debug.Log("Out fishin...");
         }
         if (Input.GetButtonDown("Interact")&&fishOnLine==true)
         {
+            player.GetComponent<playerCharacter>().CheckFishing();
+            soundManager.PlayFishCaught();
             numberOfFish++;
+            fishCount.text = "X " + numberOfFish;
+            StartCoroutine(ShowFish());
             Debug.Log("Fish Caught: " + numberOfFish);
             justCaught = true;
             fishOnLine = false;
-            isFishing = false;
         }
     }
 
@@ -104,4 +104,31 @@ public class fishing : MonoBehaviour
             nearFishingHole = false;
         }
     }
+
+    private IEnumerator FishTimer()
+    {
+        justCaught = false;
+        secondsBeforeFishSpawns = Random.Range(4, 7);
+        yield return new WaitForSecondsRealtime(secondsBeforeFishSpawns);
+        soundManager.PlayFishOnLine();
+        StartCoroutine(CatchFish());
+
+    }
+
+    private IEnumerator CatchFish()
+    {
+        fishOnLine = true;
+        Debug.Log("Fish On Line");
+
+        yield return new WaitForSecondsRealtime(2);
+        CheckIfFishOnLine();
+    }
+
+    private IEnumerator ShowFish()
+    {
+        fish.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        fish.SetActive(false);
+    }
+
 }

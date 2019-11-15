@@ -7,40 +7,28 @@ public class playerCharacter : MonoBehaviour
     Animator animator;
 
     [SerializeField]
-    private float accelerationForce = 5;
+    private float accelerationForce = 20;
 
     [SerializeField]
-    private float maxSpeed = 5;
+    private float maxSpeed = 3;
 
     [SerializeField]
     private Rigidbody2D rb2d;
 
     private float horizontalInput;
-    // Start is called before the first frame update
-
+    private bool isFacingRight = true;
+    private bool isFishing=false;
 
     public GameObject currentInterObj = null;
     public InteractiveObject currentInterObjScript = null;
     public Inventory inventory;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        horizontalInput = Input.GetAxis("Horizontal"); 
-        if (Input.GetButtonDown ("Interact") && currentInterObj)
-        {
-            if (currentInterObjScript.inventory)
-            {
-                inventory.AddItem(currentInterObj);
-                currentInterObj.SetActive(false);
-            }
-            
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("interObject"))
@@ -63,17 +51,70 @@ public class playerCharacter : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (isFishing != true)
+        {
+            Move();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        PickUpStick();
+
+    }
+
+    private void PickUpStick()
+    {
+        if (Input.GetButtonDown("Interact") && currentInterObj)
+        {
+            if (currentInterObjScript.inventory)
+            {
+                inventory.AddItem(currentInterObj);
+                currentInterObj.SetActive(false);
+            }
+
+        }
+    }
+
+    private void Move()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        if (horizontalInput > 0 && isFacingRight != true)
+        {
+            isFacingRight = true;
+            Flip();
+        }
+        else if (horizontalInput < 0 && isFacingRight != false)
+        {
+            isFacingRight = false;
+            Flip();
+        }
+
         rb2d.AddForce(Vector2.right * horizontalInput * accelerationForce);
         Vector2 clampedVelocity = rb2d.velocity;
         clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
-        if(rb2d.velocity.x!=0)
+        if (Input.GetAxis("Horizontal") != 0)
         {
-            animator.SetBool("isWalking 0", false);
+            animator.SetBool("isWalking 0", true);
+
         }
         else
         {
-            animator.SetBool("isWalking 0", true);
+            animator.SetBool("isWalking 0", false);
         }
+    }
+
+
+    private void Flip()
+    {
+            Vector2 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+    }
+
+    public void CheckFishing()
+    {
+        isFishing = !isFishing;
     }
 }

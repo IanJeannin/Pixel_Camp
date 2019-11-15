@@ -10,7 +10,10 @@ public class Ball : MonoBehaviour
     private Rigidbody2D ballRigidbody;
     [SerializeField]
     private GameObject doggo;
+    [SerializeField]
+    private Sounds soundManager;
 
+    private bool isChasing = true;
     private bool isInRange = false;
     private bool isCaught = false;
 
@@ -29,6 +32,7 @@ public class Ball : MonoBehaviour
 
     private void TossBall()
     {
+       // soundManager.PlayThrowBall();
         float playerPos = playerCharacter.transform.position.x;
         float ballPos = gameObject.transform.position.x;
         if(playerPos<=ballPos)
@@ -39,6 +43,8 @@ public class Ball : MonoBehaviour
         {
             ballRigidbody.AddForce(new Vector2(-4+(playerPos-ballPos), 5), ForceMode2D.Impulse);
         }
+        doggo.GetComponent<Dog>().Chase();
+        StartCoroutine(Fetch());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +55,7 @@ public class Ball : MonoBehaviour
             Debug.Log("Player has entered ball range.");
             isCaught = false;
         }
-        if(collision.gameObject.tag=="Dog")
+        if(collision.gameObject.tag=="Dog"&&isChasing==true)
         {
             isCaught = true;
             Debug.Log("Doggo has ball");
@@ -65,8 +71,16 @@ public class Ball : MonoBehaviour
         }
         if(collision.gameObject.tag=="Dog")
         {
+            isChasing = false;
             isCaught = false;
             Debug.Log("Doggo has dropped ball.");
         }
+    }
+
+    private IEnumerator Fetch()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        isChasing = true;
+
     }
 }
