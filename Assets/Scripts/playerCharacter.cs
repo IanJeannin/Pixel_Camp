@@ -55,6 +55,10 @@ public class playerCharacter : MonoBehaviour
         {
             Move();
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         PickUpStick();
 
     }
@@ -100,6 +104,7 @@ public class playerCharacter : MonoBehaviour
             animator.SetBool("isWalking 0", false);
         }
     }
+
 
     private void Flip()
     {
