@@ -33,7 +33,7 @@ public class fishing : MonoBehaviour
     {
         if (justCaught == true)
         {
-
+            isFishing = false;
         }
         else
         {
@@ -66,7 +66,7 @@ public class fishing : MonoBehaviour
         {
             fishExclamation.SetActive(false);
         }
-        if (Input.GetButtonDown("Interact") && nearFishingHole == true && fishOnLine == false)
+        if (Input.GetButtonDown("Interact") && nearFishingHole == true && isFishing == false && fishOnLine==false)
         {
             player.GetComponent<playerCharacter>().CheckFishing();
             soundManager.PlayThrowLine();
@@ -84,7 +84,6 @@ public class fishing : MonoBehaviour
             Debug.Log("Fish Caught: " + numberOfFish);
             justCaught = true;
             fishOnLine = false;
-            isFishing = false;
         }
     }
 
